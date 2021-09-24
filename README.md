@@ -20,11 +20,11 @@
   - inference에 GPU를 사용할 수 있는 파트가 있으므로 GPU 서버로 배포한다.
   - 코드 정리
  - ### How to use
-  1. chrome://flags/ 에서 Allow invalid certificates for resources loaded from localhost. 임의 허용해서 진행(test) 크롬 익스텐션은 사설 ssl 인증서(현재 local ssl인증서)를 허용하지 않으므로(보안) 임의 허용.
-  2. chrome://extensions/ 에서 압축해제된 확장 프로그램을 로드합니다를 클릭하여 manifest.json(설정파일)가 있는 폴더를 지정하면 등록됨. 
-  3. Django server on
+    1. chrome://flags/ 에서 Allow invalid certificates for resources loaded from localhost. 임의 허용해서 진행(test) 크롬 익스텐션은 사설 ssl 인증서(현재 local ssl인증서)를 허용하지 않으므로(보안) 임의 허용.
+    2. chrome://extensions/ 에서 압축해제된 확장 프로그램을 로드합니다를 클릭하여 manifest.json(설정파일)가 있는 폴더를 지정하면 등록됨. 
+    3. Django server on
  - ### 참고
-  - pre-train된 KoElectra + crf (NER) 모델은 용량이 커서 따로 업로드 예정. 추가할 경로 (
+    - pre-train된 KoElectra + crf (NER) 모델은 용량이 커서 따로 업로드 예정. 추가할 경로 (/NER_server/server/)
 
 
 
