@@ -26,6 +26,15 @@
  - ### 참고
     - pre-train된 KoElectra + crf (NER) 모델은 용량이 커서 따로 업로드 예정. 추가할 경로 (/NER_server/server/)
 
+ - ### Example
+ ![1](https://user-images.githubusercontent.com/26399303/134728462-059e0051-315b-4053-9014-c9d99db7b675.png)
+ - 실제 화면입니다. 창을 업로드 하면 chrome extension에서 post 형식으로 본문 내용(document.body.innerText)를 서버로 보내고 서버에서 KoElectra를 통해 NER한 결과들을 response합니다. 받은 response의 단어들을 highlight해줍니다.<br><br>
+ ![2](https://user-images.githubusercontent.com/26399303/134728524-912fed94-a17f-4e9d-998c-f8961399bfff.png)
 
-
+ - 본문에서 지리정보 검색하고 싶은 text를 드래그하면 (highlight 된 부분 아니더라도, highligh는 참고용) 우측에 지도_검색 link가 뜨게 됩니다. 
+ - X키를 누르면 사라집니다. 
+ - 또한 option에서 지도 표출을 체크하지 않은 경우에는 드래그해도 지도_검색 link가 뜨지 않습니다.
+ ![3](https://user-images.githubusercontent.com/26399303/134728532-3502395f-6791-4a1e-b3bb-e2cceb4e2f7f.png)
+  
+  - 링크를 클릭하면 드래그한 정보로 검색한 page로 이동됩니다.<br>
 
