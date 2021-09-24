@@ -1,0 +1,37 @@
+{
+    "name": "geo info highlighter",
+    "version": "1.0",
+    "manifest_version": 2,
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": true
+    },
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "web_accessible_resources": [
+        "getSource.js"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "all_frames": true,
+            "js": [
+                "getSource.js",
+                "content.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "background",
+        "activeTab",
+        "<all_urls>",
+        "http://*/",
+        "https://*/"
+    ]
+}
