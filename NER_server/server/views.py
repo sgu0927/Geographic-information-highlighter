@@ -71,7 +71,7 @@ def getLatLng(address):
     result = ""
 
     url = 'https://dapi.kakao.com/v2/local/search/address.json?query=' + address
-    rest_api_key = '83e91879c197aec3b36cb5688f51dc16'
+    rest_api_key = 'rest_api_key'
     header = {'Authorization': 'KakaoAK ' + rest_api_key}
 
     r = requests.get(url, headers=header)
@@ -85,39 +85,6 @@ def getLatLng(address):
             result = "ERROR[" + str(r.status_code) + "]"
     except:
         result = "ERROR[" + str(r.status_code) + "]"
-
-    return result
-
-
-def getKakaoMapHtml(address_latlng):
-    javascript_key = "3d078ce22dcc65c61c7dc5eab06112da"
-
-    result = ""
-    result = result + \
-        "<div id='map' style='width:300px;height:200px;display:inline-block;'></div>" + "\n"
-    result = result + "<script type='text/javascript' src='//dapi.kakao.com/v2/maps/sdk.js?appkey=3d078ce22dcc65c61c7dc5eab06112da" + \
-        javascript_key + "'></script>" + "\n"
-    result = result + "<script>" + "\n"
-    result = result + \
-        "    var container = document.getElementById('map'); " + "\n"
-    result = result + "    var options = {" + "\n"
-    result = result + \
-        "           center: new kakao.maps.LatLng(" + \
-        address_latlng[0] + ", " + address_latlng[1] + ")," + "\n"
-    result = result + "           level: 3" + "\n"
-    result = result + "    }; " + "\n"
-    result = result + \
-        "    var map = new kakao.maps.Map(container, options); " + "\n"
-
-    # 검색한 좌표의 마커 생성을 위해 추가
-    result = result + \
-        "    var markerPosition  = new kakao.maps.LatLng(" + \
-        address_latlng[0] + ", " + address_latlng[1] + ");  " + "\n"
-    result = result + \
-        "    var marker = new kakao.maps.Marker({position: markerPosition}); " + "\n"
-    result = result + "    marker.setMap(map); " + "\n"
-
-    result = result + "</script>" + "\n"
 
     return result
 
@@ -156,7 +123,6 @@ def infos(request):
         address_latlng = getLatLng(Data)
         print("[address_latlng]:    ", address_latlng)
         if str(address_latlng).find("ERROR") < 0 and key == 'showmap':
-            # return HttpResponseRedirect('https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d078ce22dcc65c61c7dc5eab06112da')
             return render(request, 'example.html', {'lat': address_latlng[0], 'lon': address_latlng[1]})
             # return render(request, 'example3.html', {'draggedText': Data})
         else:
