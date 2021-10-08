@@ -14,10 +14,10 @@
   - fetch로 본문 내용 보내줄 때 실시간으로 업데이트되는 정보가 많으면 계속 보내주고 그것이 부하가 된다. ex) 뉴스 사이트의 실시간 주요뉴스, 당신이 좋아할만한 기사, 광고
   - 속도가 상당히 느리다(inference Time이 오래 걸린다)
 - ### :heavy_check_mark: Todo
-  - 길찾기, 주변 entity 검색 등 추가 기능 구현 [구현 완료]
-  - ~~AWS or GCP(Google Cloud Platform)로 배포, 공인 ssl인증서 이용~~ gpu 서버 비용 문제
+  - 길찾기, 주변 entity 검색 등 추가 기능 구현 **[구현 완료]**
+  - ~~AWS or GCP(Google Cloud Platform)로 배포, 공인 ssl인증서 이용~~ : gpu 서버 비용 문제
   - 실시간으로 업데이트되는 정보 구분하는 logic 추가(처리할 내용 빼고는 ignore) : Nodefilter
-  - inference에 GPU를 사용할 수 있는 파트가 있으므로 GPU 서버로 배포한다.
+  - ~~inference에 GPU를 사용할 수 있는 파트가 있으므로 GPU 서버로 배포한다.~~
   - 코드 정리
  - ### :pencil2: How to use
     1. chrome://flags/ 에서 Allow invalid certificates for resources loaded from localhost. 임의 허용해서 진행(test) 크롬 익스텐션은 사설 ssl 인증서(현재 local ssl인증서)를 허용하지 않으므로(보안) 임의 허용.
