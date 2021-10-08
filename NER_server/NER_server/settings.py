@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0^b#*cd-yg^b)=*ky&t@m6*l$2xn6h67g5fmph82$96!=%)qk('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -62,6 +62,9 @@ MIDDLEWARE = [
 # ]
 # 상황에 따라 모든 도메인에 대해서도 추가가 가능합니다
 # CORS_ORIGIN_ALLOW_ALL = True
+
+ALLOWED_HOSTS = ['*']
+
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = (

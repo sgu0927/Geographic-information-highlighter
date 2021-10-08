@@ -2,3 +2,4 @@ django.crt
 django.key
 test.txt
 tmp.txt
+.env

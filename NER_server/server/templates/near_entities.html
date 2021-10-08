@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>1KM내의 Near Entities</title>
+</head>
+
+<body>
+    <div id='map' style='width:840px;height:500px;display:inline-block;'></div>
+    <script type='text/javascript' src='//dapi.kakao.com/v2/maps/sdk.js?appkey=3d078ce22dcc65c61c7dc5eab06112da'></script>
+    <script>
+        var container = document.getElementById('map');  // 지도를 표시할 div
+        var options = {
+                center: new kakao.maps.LatLng({{lat}},{{lon}}),  // 지도의 중심좌표
+                level: 3  // 지도 확대 레벨
+        };
+        // 지도를 표시할 div 와 지도 옵션으로 지도 생성
+        var map = new kakao.maps.Map(container, options);
+        
+        // 마커생성 추가
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        var imageSize = new kakao.maps.Size(24, 35);
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+        var markerPosition  = new kakao.maps.LatLng({{lat}},{{lon}});
+        var map_center = "{{center}}"
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: markerPosition,
+            title: map_center,
+            image : markerImage // 마커 이미지 
+        });
+        // marker.setMap(map); 
+
+        var locations = "{{Entities}}".replace(/&#x27;/g,"\"");
+        var placeData = JSON.parse(locations);
+        for(var i = 0; Object.keys(placeData).length; i++){
+            var latlng = new kakao.maps.LatLng(placeData[i].y, placeData[i].x);
+            var marker2 = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: latlng // 마커의 위치
+            });
+
+            // 마커에 표시할 인포윈도우를 생성합니다 
+            var infowindow = new kakao.maps.InfoWindow({
+                content: placeData[i].place_name // 인포윈도우에 표시할 내용
+            });
+
+            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+            // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+            // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+            kakao.maps.event.addListener(marker2, 'mouseover', makeOverListener(map, marker2, infowindow));
+            kakao.maps.event.addListener(marker2, 'mouseout', makeOutListener(infowindow));
+        }
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+        function makeOutListener(infowindow) {
+            return function() {
+                infowindow.close();
+            };
+        }
+    </script>
+    <style>
+        .table13_11 table {
+            width:100%;
+            margin:15px 0;
+            border:0;
+        }
+        .table13_11 th {
+            font-weight:bold;
+            background-color:#ddf3ec;
+            color:#20b17a
+        }
+        .table13_11,.table13_11 th,.table13_11 td {
+            font-size:0.95em;
+            text-align:center;
+            padding:4px;
+            border-collapse:collapse;
+        }
+        .table13_11 th,.table13_11 td {
+            border: 1px solid #ffffff;
+            border-width:1px 0 1px 0
+        }
+        .table13_11 tr {
+            border: 1px solid #ffffff;
+        }
+        .table13_11 tr:nth-child(odd){
+            background-color:#f7f7f7;
+        }
+        .table13_11 tr:nth-child(even){
+            background-color:#ffffff;
+        }
+    </style>
+    <table class=table13_11>
+        {% if Entities %}
+        <tr>
+            <th>이름</th><th>URL</th><th>도로명 주소</th><th>키워드로부터의 거리(미터)</th>
+        </tr>
+        {% for e in Entities %}
+        </tr>
+            <td>{{e.place_name}}</td><td>{{e.place_url}}</td><td>{{e.road_address_name}}</td><td>{{e.distance}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h3>장소로부터 해당 카테고리의 entity가 없습니다.</h3>
+        {% endif %}
+    </table>
+</body>
+
+</html>

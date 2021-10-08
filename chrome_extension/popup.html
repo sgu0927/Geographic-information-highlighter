@@ -13,22 +13,22 @@
 
 	<h1>Geographic Keywords Highlighter</h1>
 
-	<!-- <h2>Keywords</h2>
-<p>Which keywords should be highlighted?</p>
-<p><textarea id="textareaKeywords" rows="3"></textarea><br />
-	<em>(comma-separated)</em></p>
-
-<h2>Highlighting</h2>
-<p>What colors should be used?</p>
-<p><input id="colorForeground" type="color" /> <label for="colorForeground">Text color</label></p>
-<p><input id="colorBackground" type="color" /> <label for="colorBackground">Background color</label>
-	<em>&nbsp;</em></p> -->
-
 	<h2>Options</h2>
-	<!-- <p><input id="checkboxShowOccurrences" type="checkbox" /> <label for="checkboxShowOccurrences">Show number of found keywords in toolbar icon.</label></p> -->
-	<p><input id="checkboxShowMaps" type="checkbox" /> <label for="checkboxShowMaps">지도 표출</label></p>
-	<p><input id="checkboxGetDirections" type="checkbox" /> <label for="checkboxGetDirections">길찾기</label></p>
+	<p><input id="checkboxShowMaps" type="checkbox"/> <label for="checkboxShowMaps">지도 표출</label></p>
+	<p><input id="checkboxGetDirections" type="checkbox"/> <label for="checkboxGetDirections">길찾기</label></p>
+	<p><input id="checkboxGetEntities" type="checkbox"/> <label for="checkboxGetEntities">주변 시설 검색</label></p>
+
+	<h2>주변 시설 검색</h2>
+	<input type="radio" name="entity" id="restaurant" checked="checked"/>음식점
+	<br /> 
+	<input type="radio" name="entity" id="cafe"/>카페 
 	<br />
+	<input type="radio" name="entity" id="convenience_store"/>편의점
+	<br />
+	<input type="radio" name="entity" id="gas_station"/>주유소
+	<br />
+	<br />
+
 	<button id="buttonSave" type="submit">Save</button> &nbsp;&nbsp;&nbsp; <button id="buttonCancel"
 		type="reset">Cancel</button>
 
