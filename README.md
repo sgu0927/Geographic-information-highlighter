@@ -11,10 +11,10 @@
 - ### :ballot_box_with_check: 현재 상황
   - 지도 표출 기능, Highlight 기능, 길찾기, 주변 entity 검색, option 설정 기능 구현
   - fetch로 본문 내용 보내줄 때 실시간으로 업데이트되는 정보가 많으면 계속 보내주고 그것이 부하가 된다. ex) 뉴스 사이트의 실시간 주요뉴스, 당신이 좋아할만한 기사, 광고
-  - 속도가 상당히 느리다(inference Time이 오래 걸린다)
+  - CPU환경에서 Local로 Test해본 결과, 속도가 상당히 느리다(inference Time이 오래 걸린다)
 - ### :heavy_check_mark: Todo
   - ~~길찾기, 주변 entity 검색 등 추가 기능 구현~~ **[구현 완료]**
-  - ~~AWS or GCP(Google Cloud Platform)로 배포, 공인 ssl인증서 이용~~ : gpu 서버 비용 문제 -> 연구실 docker 환경에서 구동해봄(NVidiaTesla GPU 4개)
+  - ~~AWS or GCP(Google Cloud Platform)로 배포, 공인 ssl인증서 이용~~ : gpu 서버 비용 문제 -> 연구실 docker 환경에서 구동해 이용에 불편함 없는 속도로 되는 것을 확인(NVidiaTesla GPU 4개)
   - 실시간으로 업데이트되는 정보 구분하는 logic 추가(처리할 내용 빼고는 ignore) : Nodefilter
   - ~~inference에 GPU를 사용할 수 있는 파트가 있으므로 GPU 서버로 배포한다.~~
   - 코드 정리
@@ -43,5 +43,5 @@
   ![6](https://user-images.githubusercontent.com/26399303/137757761-f0ae9bce-c618-4452-a6b1-6c20b0d2f848.png)
 - popup에서 주변 Entity 검색 '편의점' 선택 후, '고소천사벽화마을' 드래그 후 '주변 시설 검색' 클릭 시 화면
 - 지도에서 drag로 줌 인, 아웃 가능
-- 드래그한 키워드 별표 모양 마킹
+- 드래그한 키워드 별표 모양 마킹, 다른 마킹에 커서 올리면 이름 출력
 - 1KM 반경의 선택한 Entity 이름, URL, 도로명 주소, 키워드로부터의 거리(m)를 거리순으로 보여줌
