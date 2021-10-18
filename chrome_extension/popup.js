@@ -8,11 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("buttonSave").addEventListener("click", function () {
         saveOptions();
         window.close();
-
-        // chrome.runtime.sendMessage({
-        //     "message": "getOptions",
-        //     "remove": true
-        // });
     });
 
     if (document.getElementById("checkboxShowMaps").checked) {

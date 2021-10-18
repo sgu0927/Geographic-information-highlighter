@@ -1,4 +1,6 @@
-// let targetUrl = "https://127.0.0.1:8000/infos?sourceText=";
+let serverUrl2 = "http://127.0.0.1:8000";
+// let serverUrl2 = "http://jhubdb.hanyang.ac.kr:52000";
+
 let show_map = true;
 let show_direction = true;
 let show_entities = true;
@@ -10,11 +12,9 @@ let near_gas_station = false;
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if ("showMaps" == request.type) {
         show_map = true;
-        // sendResponse("Hello");
     }
     else if ("cancelShowMaps" == request.type) {
         show_map = false;
-        // sendResponse("Bye");
     }
     else if ("getDirections" == request.type) {
         show_direction = true;
@@ -67,7 +67,7 @@ function dragText() {
 }
 
 document.onmouseup = function () {
-    if (dragText() && !window.location.href.startsWith("https://127.0.0.1:8000")) {
+    if (dragText() && !window.location.href.startsWith(serverUrl2)) {
         displayText(dragText());
         console.log("working");
     }
@@ -97,16 +97,11 @@ function displayText(draggedText) {
                 // 안보이게
                 // this.parentElement.style.display = "none";
             });
-            // closeButton.style.cursor = "pointer";
-            // newP.innerHTML = draggedText + "&key=showmap";
             newP.innerHTML = "지도 검색";
 
-            // newP.setAttribute("href", encodeURI(draggedText + "&key=showmap"));
             newP.setAttribute("href", encodeURI('https://map.kakao.com/link/search/' + draggedText));
 
             newP.style.zIndex = "1";
-            // newP.href = draggedText + "&key=showmap";
-            // newP.onclick = window.open(draggedText);
 
             newDIV.appendChild(closeButton);
             newDIV.appendChild(newP);
@@ -114,7 +109,6 @@ function displayText(draggedText) {
             newDIV.setAttribute("class", "MapViewTextView");
             newDIV.style.padding = "1rem";
             newDIV.style.position = "fixed";
-            // newDIV.style.position = "relative";
             newDIV.style.zIndex = "1";
             newDIV.style.right = "0";
             newDIV.style.top = "150px";
@@ -132,7 +126,9 @@ function displayText(draggedText) {
             var children2 = match2[0].childNodes;
             for (var i = 0; i < children2.length; i++) {
                 if (children2[i].nodeName == 'A') {
-                    children2[i].setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText));
+                    children2[i].setAttribute("href", encodeURI('http://127.0.0.1:8000/infos?sourceText=' + draggedText));
+                    // children2[i].setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText));
+                    // children2[i].setAttribute("href", encodeURI('http://jhubdb.hanyang.ac.kr:52000/infos?sourceText=' + draggedText));
                 }
             }
         }
@@ -147,7 +143,9 @@ function displayText(draggedText) {
             });
 
             newP2.innerHTML = "길찾기";
-            newP2.setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText));
+            newP2.setAttribute("href", encodeURI('http://127.0.0.1:8000/infos?sourceText=' + draggedText));
+            // newP2.setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText));
+            // newP2.setAttribute("href", encodeURI('http://jhubdb.hanyang.ac.kr:52000/infos?sourceText=' + draggedText));
 
             newP2.style.zIndex = "1";
 
@@ -185,7 +183,9 @@ function displayText(draggedText) {
                     } else if (near_gas_station) {
                         code = "OL7";
                     }
-                    children3[i].setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText + '&code=' + code.toString()));
+                    children3[i].setAttribute("href", encodeURI('http://127.0.0.1:8000/infos?sourceText=' + draggedText + '&code=' + code.toString()));
+                    // children3[i].setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText + '&code=' + code.toString()));
+                    // children3[i].setAttribute("href", encodeURI('http://jhubdb.hanyang.ac.kr:52000/infos?sourceText=' + draggedText + '&code=' + code.toString()));
                 }
             }
         }
@@ -201,8 +201,7 @@ function displayText(draggedText) {
                 // 안보이게
                 // this.parentElement.style.display = "none";
             });
-            // closeButton.style.cursor = "pointer";
-            // newP.innerHTML = draggedText + "&key=showmap";
+
             newP3.innerHTML = "주변 시설 검색";
 
             let code = "";
@@ -215,7 +214,9 @@ function displayText(draggedText) {
             } else if (near_gas_station) {
                 code = "OL7";
             }
-            newP3.setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText + '&code=' + code.toString()));
+            newP3.setAttribute("href", encodeURI('http://127.0.0.1:8000/infos?sourceText=' + draggedText + ' & code=' + code.toString()));
+            // newP3.setAttribute("href", encodeURI('https://127.0.0.1:8000/infos?sourceText=' + draggedText + ' & code=' + code.toString()));
+            // newP3.setAttribute("href", encodeURI('http://jhubdb.hanyang.ac.kr:52000/infos?sourceText=' + draggedText + '&code=' + code.toString()));
 
             newP3.style.zIndex = "1";
 

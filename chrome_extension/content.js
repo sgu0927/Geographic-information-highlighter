@@ -1,5 +1,7 @@
 let geo_infos = [];
 let prev = "";
+let serverUrl = "http://127.0.0.1:8000";
+// let serverUrl = "http://jhubdb.hanyang.ac.kr:52000";
 
 function keywordsHighlighter(options, remove) {
 	var occurrences = 0;
@@ -66,98 +68,35 @@ function keywordsHighlighter(options, remove) {
 }
 
 
-if (!window.location.href.startsWith("https://127.0.0.1:8000") && !window.location.href.startsWith("https://map.kakao.com/")) {
+
+if (!window.location.href.startsWith(serverUrl) && !window.location.href.startsWith("https://map.kakao.com/")) {
 	var cur_text = document.body.innerText;
 	if (prev != cur_text && cur_text !== '' && !cur_text.startsWith('function()')
 		&& !cur_text.startsWith('(function') && !cur_text.startsWith('/**') && !cur_text.startsWith('\n(function')) {
-		prev = cur_text;
-		fetch("https://127.0.0.1:8000/infos/", {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				sourceText: document.body.innerText,
-				key: "highlight",
-			}),
-		})
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				let arr = data['NER_result'];
-				console.log("NER_result: ", arr);
-				if (typeof arr !== 'undefined' && arr !== 'None') {
-					for (var i = 0; i < arr.length; i++) {
-						geo_infos.push(arr[i]);
-					}
-					keywordsHighlighter({
-						"keywords": geo_infos,
-						"foreground": "#000000",
-						"background": "#ffff00"
-					},
-						false
-					);
-				}
-			})
-			.catch((error) => console.log(error));
+
+		if ("undefined" != typeof localStorage && "undefined" != typeof cur_text) {
+			chrome.runtime.sendMessage({
+				type: "sourceTextReady",
+				source_body: cur_text
+			});
+
+			prev = cur_text;
+		} else {
+			console.log(typeof localStorage, typeof cur_text);
+		}
 	}
 }
 
-// fetch("https://127.0.0.1:8000/infos/", {
-// 	method: 'POST',
-// 	headers: {
-// 		'Content-Type': 'application/json'
-// 	},
-// 	body: JSON.stringify({
-// 		sourceText: document.body.innerText,
-// 		key: "highlight",
-// 		userId: 1,
-// 	}),
-// })
-// 	.then((response) => {
-// 		return response.json();
-// 	})
-// 	.then((data) => {
-// 		let arr = data['NER_result'];
-// 		console.log("NER_result: ", arr);
-// 		if (typeof arr !== 'undefined' && arr !== 'None') {
-// 			for (var i = 0; i < arr.length; i++) {
-// 				geo_infos.push(arr[i]);
-// 			}
-// 			keywordsHighlighter({
-// 				"keywords": geo_infos,
-// 				"foreground": "#000000",
-// 				"background": "#ffff00"
-// 			},
-// 				false
-// 			);
-// 		}
-// 	})
-// 	.catch((error) => console.log(error));
-
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-// 	if ("returnOptions" == request.message) {
-// 		keywordsHighlighter({
-// 			"keywords": geo_infos,
-// 			"foreground": request.foreground,
-// 			"background": request.background
-// 		},
-// 			request.remove
-// 		);
-// 		// if ("undefined" != typeof request.keywords && request.keywords) {
-// 		// 	keywordsHighlighter({
-// 		// 		"keywords": geo_infos,
-// 		// 		"foreground": request.foreground,
-// 		// 		"background": request.background
-// 		// 	},
-// 		// 		request.remove
-// 		// 	);
-// 		// }
-// 	}
-// });
-
-// chrome.runtime.sendMessage({
-// 	"message": "getOptions",
-// 	"remove": false
-// });
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+	if ("keywordsHighlight" == request.type) {
+		if ("undefined" != typeof request.LOC_tags) {
+			keywordsHighlighter({
+				"keywords": request.LOC_tags,
+				"foreground": "#000000",
+				"background": "#ffff00"
+			},
+				false
+			);
+		}
+	}
+});
