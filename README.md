@@ -22,6 +22,8 @@
     1. chrome://extensions/ 에서 압축해제된 확장 프로그램을 로드합니다를 클릭하여 manifest.json(설정파일)가 있는 폴더를 지정하면 등록됨.
     2. Extension의 background.js, content.js에 server 주소 설정 
     3. Django server on
+    4. popup save를 통해 원하는 서비스 설정
+    ![4](https://user-images.githubusercontent.com/26399303/137757522-187861a8-aa15-4be6-8f16-7a90341bbf63.png)
  - ### 참고
     - pre-train된 KoElectra + crf (NER) 모델은 용량이 커서 따로 업로드 예정. 추가할 경로 (/NER_server/server/)
 
@@ -36,4 +38,10 @@
  ![3](https://user-images.githubusercontent.com/26399303/134728532-3502395f-6791-4a1e-b3bb-e2cceb4e2f7f.png)
   
   - 링크를 클릭하면 드래그한 정보로 검색한 page로 이동됩니다.<br>
-
+![5](https://user-images.githubusercontent.com/26399303/137757624-7b44310c-ecee-40f3-ad94-026521ab45b9.png)
+  - '나곡해수욕장' 드래그 후 '길찾기' 링크 클릭 시 화면
+  ![6](https://user-images.githubusercontent.com/26399303/137757761-f0ae9bce-c618-4452-a6b1-6c20b0d2f848.png)
+- popup에서 주변 Entity 검색 '편의점' 선택 후, '고소천사벽화마을' 드래그 후 '주변 시설 검색' 클릭 시 화면
+- 지도에서 drag로 줌 인, 아웃 가능
+- 드래그한 키워드 별표 모양 마킹
+- 1KM 반경의 선택한 Entity 이름, URL, 도로명 주소, 키워드로부터의 거리(m)를 거리순으로 보여줌
