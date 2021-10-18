@@ -15,7 +15,7 @@
   - 속도가 상당히 느리다(inference Time이 오래 걸린다)
 - ### :heavy_check_mark: Todo
   - ~~길찾기, 주변 entity 검색 등 추가 기능 구현~~ **[구현 완료]**
-  - ~~AWS or GCP(Google Cloud Platform)로 배포, 공인 ssl인증서 이용~~ : gpu 서버 비용 문제
+  - ~~AWS or GCP(Google Cloud Platform)로 배포, 공인 ssl인증서 이용~~ : gpu 서버 비용 문제 -> 연구실 docker 이용(NVidiaTesla GPU 4개)
   - 실시간으로 업데이트되는 정보 구분하는 logic 추가(처리할 내용 빼고는 ignore) : Nodefilter
   - ~~inference에 GPU를 사용할 수 있는 파트가 있으므로 GPU 서버로 배포한다.~~
   - 코드 정리
