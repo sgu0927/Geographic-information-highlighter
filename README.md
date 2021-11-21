@@ -1,5 +1,5 @@
 ## :pencil2: Geographic Information Highlighter(Chrome Extension)
-### :books: 한양대학교 컴퓨터소프트웨어학부 졸업 프로젝트(2021.03 ~ 진행중)
+### :books: 한양대학교 컴퓨터소프트웨어학부 졸업 프로젝트(2021.03 ~ 10)
 - ### :bulb: **Topic** : <code>텍스트 내 지리정보 추출을 이용한 서비스</code>
 - #### 👨‍💻 맡은 역할: 크롬 익스텐션 개발, API server(Django), 배포 (팀원: ELECTRA 모델 담당)
 - ### :clipboard: Description
